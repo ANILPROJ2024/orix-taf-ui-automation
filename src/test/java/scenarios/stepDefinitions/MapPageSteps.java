@@ -31,9 +31,8 @@ public class MapPageSteps {
 
     @Then("Verify the odometer reading {string} is correct")
     public void verify_the_odometer_reading_is_correct(String expectedReading) {
-        String actualReading = mapPage.getOdometerReading();
-        scenario.log("Actual reading: " + actualReading);
-        Assert.assertEquals(actualReading, expectedReading, "Expected odometer reading is: " + expectedReading + " but the actual odometer reading is:  " + actualReading);
+        boolean isExpectedReadingDisplayed = mapPage.isExpectedOdometerReadingDisplayed(expectedReading);
+        Assert.assertTrue(isExpectedReadingDisplayed);
     }
 
     @Then("Verify the vehicle specifications {string} are correct")
@@ -45,7 +44,7 @@ public class MapPageSteps {
 
     @Then("Verify the fuel percentage {string} is correct")
     public void verifyTheFuelPercentageIsCorrect(String fuelPercentage) {
-        Assert.assertTrue(mapPage.verifyFuelPercentage());
+        Assert.assertTrue(mapPage.verifyFuelPercentage(fuelPercentage));
     }
 
     @When("Search and select a vehicle {string} from the list")

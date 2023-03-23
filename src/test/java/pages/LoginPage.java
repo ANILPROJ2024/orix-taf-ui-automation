@@ -2,9 +2,6 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-
 
 public class LoginPage extends BasePage {
 
@@ -18,15 +15,10 @@ public class LoginPage extends BasePage {
     }
 
     public void loginToIntangles() throws InterruptedException {
-        driver.findElement(userNameTextBox).sendKeys("test_user@intangles.com");
-        driver.findElement(passwordTextBox).sendKeys("1234");
-        driver.findElement(loginButton).click();
-        Thread.sleep(5000);
-        WebElement element = driver.findElement(svgElement);
-        // Action class to move and click element
-        Actions act = new Actions(driver);
-        act.moveToElement(element).
-                click().build().perform();
+        enterTextOnElement(userNameTextBox, "test_user@intangles.com");
+        enterTextOnElement(passwordTextBox, "1234");
+        clickOnElement(loginButton);
+        moveToElementAndClick(svgElement);
         Thread.sleep(5000);
     }
 }

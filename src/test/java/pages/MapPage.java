@@ -7,20 +7,25 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MapPage extends BasePage {
 
     private final By vehicleCard = By.xpath("(//b[contains(text(),'gobinda_jeep')])[1]");
     private final By vehiclePopOver = By.xpath("(//b[contains(text(),'gobinda_jeep')])[3]");
     private final By vehicleAddress = By.cssSelector("div[title='Current location'] span[class='d-MuiTypography-root d-MuiTypography-body1']");
-    private final By odometerReading = By.cssSelector("span[class='d-MuiTypography-root d-MuiTypography-h6'] strong");
+    private final By speed = By.cssSelector("span[class='d-MuiTypography-root d-MuiTypography-h6'] strong");
+    private final String odometerReading = "//b[normalize-space()='odometerReading']";
+    private final String fuelPercentage = "//span[normalize-space()='percentageFuel']";
     private final By vehicleSpecification = By.cssSelector("div[title='Vehicle specs'] span[class='d-MuiTypography-root d-MuiTypography-body1']");
     private final By vehicleState = By.xpath("(//span[@class='d-MuiChip-label d-MuiChip-labelSmall'][normalize-space()='OFFLINE'])[1]");
     private final By vehicleDrivers = By.xpath("//span[normalize-space()='DRIVERS']");
     private final By fuelSection = By.xpath("//span[normalize-space()='FUEL']");
     private final By searchVehicleField = By.cssSelector("input[placeholder='Search Vehicle...']");
     private final By adBlue = By.xpath("//span[normalize-space()='6%']");
+    private final String adBluePercentage = "//span[normalize-space()='percentage']";
     private final By vehicleParkedState = By.xpath("//h6[normalize-space()='PARKED']");
     private final By vehicles = By.xpath("//p[@class='d-MuiTypography-root d-MuiTypography-body1'][@caseformat='upper'][contains(@style,'font-size')]");
     private String vehicleHealth = "//span[normalize-space()='healthStatus']";
@@ -34,28 +39,24 @@ public class MapPage extends BasePage {
     }
 
     public boolean selectAVehicle(String vehicle) {
-        driver.findElement(vehicleCard).click();
+        clickOnElement(vehicleCard);
         return driver.findElement(vehiclePopOver).isDisplayed();
     }
 
     public String getVehicleAddress() {
-        WebElement address = driver.findElement(vehicleAddress);
-        return address.getText();
+        return getTextOnElement(vehicleAddress);
     }
 
-    public String getOdometerReading() {
-        WebElement odometerRead = driver.findElement(odometerReading);
-        return odometerRead.getText();
+    public boolean isExpectedOdometerReadingDisplayed(String reading) {
+        return driver.findElement(By.xpath(odometerReading.replace("odometerReading", reading))).isDisplayed();
     }
 
     public String getVehicleSpecs() {
-        WebElement vehicleSpecs = driver.findElement(vehicleSpecification);
-        return vehicleSpecs.getText();
+        return getTextOnElement(vehicleSpecification);
     }
 
     public String getVehicleState() {
-        WebElement state = driver.findElement(vehicleState);
-        return state.getText();
+        return getTextOnElement(vehicleState);
     }
 
     public void scrollToDrivers() {
@@ -64,31 +65,26 @@ public class MapPage extends BasePage {
         jsExecutor.executeScript("arguments[0].scrollIntoView();", scrollToElement);
     }
 
-    public boolean verifyFuelPercentage() {
+    public boolean verifyFuelPercentage(String percentage) {
         driver.findElement(fuelSection).isDisplayed();
-        return driver.findElement(By.xpath("//span[normalize-space()='31%']")).isDisplayed();
+        return driver.findElement(By.xpath(fuelPercentage.replace("percentageFuel", percentage))).isDisplayed();
     }
 
     public void searchAndSelectVehicle(String vehicle) throws InterruptedException {
-        driver.findElement(searchVehicleField).clear();
-        driver.findElement(searchVehicleField).sendKeys(vehicle + Keys.ENTER);
+        enterTextOnElement(searchVehicleField, vehicle);
         Thread.sleep(5000);
         driver.findElement(searchVehicleField).sendKeys(Keys.ENTER);
         Thread.sleep(5000);
     }
 
     public boolean verifyAdBlue(String percentage) {
-        return driver.findElement(adBlue).isDisplayed();
+        return driver.findElement(By.xpath(adBluePercentage.replace("percentage", percentage))).isDisplayed();
     }
 
     public void verifyVehicleListAsPerStatus(String status) throws InterruptedException {
 
-//        driver.findElement(vehicleParkedState).click();
-
         Thread.sleep(5000);
         List<WebElement> scrollToElements = driver.findElements(vehicles);
-
-        System.out.println(scrollToElements.size());
 
         for (WebElement element : scrollToElements) {
             Thread.sleep(1000);
@@ -119,7 +115,7 @@ public class MapPage extends BasePage {
     }
 
     public void clickOnStatus(String status){
-        driver.findElement(By.xpath(vehicleStatusComponentName.replace("statusName", status))).click();
+        clickOnElement(By.xpath(vehicleStatusComponentName.replace("statusName", status)));
     }
 
 }

@@ -5,7 +5,6 @@ import factory.DriverFactory;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
-import io.cucumber.java.it.Ma;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -46,8 +45,8 @@ public class Hooks {
             scenario.attach(fileContent, "image/png", "image");
         }
 
-//        if (driver != null)
-//            driver.quit();
+        if (driver != null)
+            driver.quit();
     }
 
 }

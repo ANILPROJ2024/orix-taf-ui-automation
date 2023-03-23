@@ -39,7 +39,6 @@ public class DriverFactory {
         }
 
         driver.manage().window().maximize();
-//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         return driver;
     }
 }
