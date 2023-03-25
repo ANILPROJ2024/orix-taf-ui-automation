@@ -26,6 +26,8 @@ public class MapPageSteps {
     public void verify_the_address_is_correct(String expectedAddress) {
         String actualAddress = mapPage.getVehicleAddress();
         scenario.log("Actual address: " + actualAddress);
+        Assert.assertNotEquals(actualAddress, "nan");
+        Assert.assertNotEquals(actualAddress, "undefined");
         Assert.assertEquals(actualAddress, expectedAddress, "Expected address is: " + expectedAddress + " but the actual address is:  " + actualAddress);
     }
 
@@ -89,7 +91,7 @@ public class MapPageSteps {
         mapPage.clickOnStatus(status);
     }
 
-    @Then("Verify that the vehicles are listed as per the status {string}")
+    @Then("Verify that the vehicles are listed as per the status {string} clicked")
     public void verifyThatTheVehiclesAreListedAsPerTheStatus(String status) throws InterruptedException {
         mapPage.verifyVehicleListAsPerStatus(status);
     }

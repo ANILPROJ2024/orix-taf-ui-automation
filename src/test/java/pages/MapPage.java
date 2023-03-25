@@ -83,11 +83,11 @@ public class MapPage extends BasePage {
 
     public void verifyVehicleListAsPerStatus(String status) throws InterruptedException {
 
-        Thread.sleep(5000);
-        List<WebElement> scrollToElements = driver.findElements(vehicles);
-
+        Thread.sleep(3000);
+        List<WebElement> scrollToElements;
+        scrollToElements = driver.findElements(vehicles);
+        System.out.println(scrollToElements.size());
         for (WebElement element : scrollToElements) {
-            Thread.sleep(1000);
             // Scroll the element into view using JavascriptExecutor
             JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
             jsExecutor.executeScript("arguments[0].scrollIntoView();", element);
@@ -109,12 +109,12 @@ public class MapPage extends BasePage {
         return driver.findElement(vehicleStatusComponent).isDisplayed();
     }
 
-    public int getVehicleStatusComponentCount(String status){
+    public int getVehicleStatusComponentCount(String status) {
         String count = driver.findElement(By.xpath(vehicleStatusComponentCount.replace("statusName", status))).getText();
         return Integer.parseInt(count);
     }
 
-    public void clickOnStatus(String status){
+    public void clickOnStatus(String status) {
         clickOnElement(By.xpath(vehicleStatusComponentName.replace("statusName", status)));
     }
 
