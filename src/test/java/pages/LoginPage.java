@@ -14,9 +14,9 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
-    public void loginToIntangles() throws InterruptedException {
-        enterTextOnElement(userNameTextBox, "test_user@intangles.com");
-        enterTextOnElement(passwordTextBox, "1234");
+    public void loginToIntangles(String username, String password) throws InterruptedException {
+        enterTextOnElement(userNameTextBox, username);
+        enterTextOnElement(passwordTextBox, password);
         clickOnElement(loginButton);
         moveToElementAndClick(svgElement);
         Thread.sleep(5000);

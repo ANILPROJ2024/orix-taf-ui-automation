@@ -37,8 +37,7 @@ public class BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(element));
         WebElement webElement = driver.findElement(element);
         Actions act = new Actions(driver);
-        act.moveToElement(webElement).
-                click().build().perform();
+        act.moveToElement(webElement).click().build().perform();
     }
 
     public String getTextOnElement(By element) {

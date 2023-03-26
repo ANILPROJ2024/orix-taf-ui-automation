@@ -9,8 +9,8 @@ Feature: Map functionality
     And Verify the vehicle specifications "<vehicle_spec>" are correct
 
     Examples:
-      | vehicle         | address              | odometer_reading | vehicle_spec                  |
-      | TUSHAR _ IMAX 3 | Intangles New Office | 13,63,586        | Mahindra - Jayo lcv cargo bs6 |
+      | vehicle         | address                                                                 | odometer_reading | vehicle_spec                  |
+      | TUSHAR _ IMAX 3 | West Avenue, Mhada Colony, Viman Nagar, Pune, Maharashtra 411014, India | 13,63,586        | Mahindra - Jayo lcv cargo bs6 |
 
 
   @map @sanity @regression

@@ -15,19 +15,23 @@ public class MapPage extends BasePage {
 
     private final By vehicleCard = By.xpath("(//b[contains(text(),'gobinda_jeep')])[1]");
     private final By vehiclePopOver = By.xpath("(//b[contains(text(),'gobinda_jeep')])[3]");
-    private final By vehicleAddress = By.cssSelector("div[title='Current location'] span[class='d-MuiTypography-root d-MuiTypography-body1']");
+    private final By vehicleAddress = By
+            .cssSelector("div[title='Current location'] span[class='d-MuiTypography-root d-MuiTypography-body1']");
     private final By speed = By.cssSelector("span[class='d-MuiTypography-root d-MuiTypography-h6'] strong");
     private final String odometerReading = "//b[normalize-space()='odometerReading']";
     private final String fuelPercentage = "//span[normalize-space()='percentageFuel']";
-    private final By vehicleSpecification = By.cssSelector("div[title='Vehicle specs'] span[class='d-MuiTypography-root d-MuiTypography-body1']");
-    private final By vehicleState = By.xpath("(//span[@class='d-MuiChip-label d-MuiChip-labelSmall'][normalize-space()='OFFLINE'])[1]");
+    private final By vehicleSpecification = By
+            .cssSelector("div[title='Vehicle specs'] span[class='d-MuiTypography-root d-MuiTypography-body1']");
+    private final By vehicleState = By
+            .xpath("(//span[@class='d-MuiChip-label d-MuiChip-labelSmall'][normalize-space()='OFFLINE'])[1]");
     private final By vehicleDrivers = By.xpath("//span[normalize-space()='DRIVERS']");
     private final By fuelSection = By.xpath("//span[normalize-space()='FUEL']");
     private final By searchVehicleField = By.cssSelector("input[placeholder='Search Vehicle...']");
     private final By adBlue = By.xpath("//span[normalize-space()='6%']");
     private final String adBluePercentage = "//span[normalize-space()='percentage']";
     private final By vehicleParkedState = By.xpath("//h6[normalize-space()='PARKED']");
-    private final By vehicles = By.xpath("//p[@class='d-MuiTypography-root d-MuiTypography-body1'][@caseformat='upper'][contains(@style,'font-size')]");
+    private final By vehicles = By.xpath(
+            "//p[@class='d-MuiTypography-root d-MuiTypography-body1'][@caseformat='upper'][contains(@style,'font-size')]");
     private String vehicleHealth = "//span[normalize-space()='healthStatus']";
     private String vehicleMoving = "//span[contains(@class,'d-MuiChip-label d-MuiChip-labelSmall')][normalize-space()='movingStatus']";
     private final By vehicleStatusComponent = By.xpath("//h6[normalize-space()='TOTAL']");
@@ -110,7 +114,8 @@ public class MapPage extends BasePage {
     }
 
     public int getVehicleStatusComponentCount(String status) {
-        String count = driver.findElement(By.xpath(vehicleStatusComponentCount.replace("statusName", status))).getText();
+        String count = driver.findElement(By.xpath(vehicleStatusComponentCount.replace("statusName", status)))
+                .getText();
         return Integer.parseInt(count);
     }
 

@@ -28,7 +28,8 @@ public class MapPageSteps {
         scenario.log("Actual address: " + actualAddress);
         Assert.assertNotEquals(actualAddress, "nan");
         Assert.assertNotEquals(actualAddress, "undefined");
-        Assert.assertEquals(actualAddress, expectedAddress, "Expected address is: " + expectedAddress + " but the actual address is:  " + actualAddress);
+        Assert.assertEquals(actualAddress, expectedAddress,
+                "Expected address is: " + expectedAddress + " but the actual address is:  " + actualAddress);
     }
 
     @Then("Verify the odometer reading {string} is correct")
@@ -41,7 +42,8 @@ public class MapPageSteps {
     public void verify_the_vehicle_specifications_are_correct(String expectedVehicleSpec) {
         String actualVehicleSpec = mapPage.getVehicleSpecs();
         scenario.log("Actual vehicle spec: " + actualVehicleSpec);
-        Assert.assertEquals(actualVehicleSpec, expectedVehicleSpec, "Expected vehicle spec is: " + expectedVehicleSpec + " but the actual vehicle spec is:  " + actualVehicleSpec);
+        Assert.assertEquals(actualVehicleSpec, expectedVehicleSpec, "Expected vehicle spec is: " + expectedVehicleSpec
+                + " but the actual vehicle spec is:  " + actualVehicleSpec);
     }
 
     @Then("Verify the fuel percentage {string} is correct")
@@ -80,7 +82,7 @@ public class MapPageSteps {
         int count = mapPage.getVehicleStatusComponentCount(status);
         boolean flag = false;
         scenario.log(status + ": " + count);
-        if(count>=0){
+        if (count >= 0) {
             flag = true;
         }
         Assert.assertTrue(flag);
@@ -95,4 +97,5 @@ public class MapPageSteps {
     public void verifyThatTheVehiclesAreListedAsPerTheStatus(String status) throws InterruptedException {
         mapPage.verifyVehicleListAsPerStatus(status);
     }
+
 }
