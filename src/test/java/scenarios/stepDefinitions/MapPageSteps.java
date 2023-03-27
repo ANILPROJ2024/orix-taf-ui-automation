@@ -17,11 +17,6 @@ public class MapPageSteps {
         scenario = context.scenario;
     }
 
-    @When("Select a vehicle {string} from the list")
-    public void select_a_vehicle_from_the_list(String vehicle) {
-        Assert.assertTrue(mapPage.selectAVehicle(vehicle), "The vehicle " + vehicle + " is not selected");
-    }
-
     @Then("Verify the address {string} is correct")
     public void verify_the_address_is_correct(String expectedAddress) {
         String actualAddress = mapPage.getVehicleAddress();
@@ -48,7 +43,9 @@ public class MapPageSteps {
 
     @Then("Verify the fuel percentage {string} is correct")
     public void verifyTheFuelPercentageIsCorrect(String fuelPercentage) {
-        Assert.assertTrue(mapPage.verifyFuelPercentage(fuelPercentage));
+        String actualFuelPercentage = mapPage.getFuelPercentage(fuelPercentage);
+        scenario.log("Actual Fuel Percentage" + actualFuelPercentage);
+        Assert.assertEquals(actualFuelPercentage, fuelPercentage);
     }
 
     @When("Search and select a vehicle {string} from the list")
@@ -61,13 +58,14 @@ public class MapPageSteps {
         Assert.assertTrue(mapPage.verifyAdBlue(percentage));
     }
 
-    @Then("Verify the vehicle health status {string} is correct")
+    @Then("Verify the vehicle health status {string} in vehicle details")
     public void verifyTheVehicleStatusIsCorrect(String healthStatus) {
-        boolean isHealthStatusDisplayed = mapPage.verifyHealthStatusIsDisplayed(healthStatus);
-        Assert.assertTrue(isHealthStatusDisplayed, "Expected Health status is not displayed");
+        String status = mapPage.getVehicleHealthStatus(healthStatus);
+        scenario.log("Actual health status: " + status);
+        Assert.assertEquals(status, healthStatus, "Expected Health status is not displayed");
     }
 
-    @Then("Verify the vehicle moving status {string} is correct")
+    @Then("Verify the vehicle moving status {string} in vehicle details")
     public void verifyTheVehicleMovingStatusIsCorrect(String movingStatus) {
         Assert.assertTrue(mapPage.isMovingStatusDisplayed(movingStatus), "Expected moving status is not displayed");
     }
@@ -98,4 +96,22 @@ public class MapPageSteps {
         mapPage.verifyVehicleListAsPerStatus(status);
     }
 
+    @Then("Verify that the {string} section is displayed")
+    public void verifyThatTheSectionIsDisplayed(String section) {
+        Assert.assertTrue(mapPage.isSectionDisplayed(section));
+    }
+
+    @Then("Verify the vehicle health status {string} in card")
+    public void verifyTheVehicleHealthStatusInCard(String status) {
+        String actualStatusInCard = mapPage.getHealthStatusInCard(status);
+        scenario.log("Actual health status in card: " + actualStatusInCard);
+        Assert.assertEquals(actualStatusInCard, status);
+    }
+
+    @Then("Verify the vehicle moving status {string} in card")
+    public void verifyTheVehicleMovingStatusInCard(String status) {
+        String actualStatusInCard = mapPage.getMovingStatusInCard(status);
+        scenario.log("Actual moving status in card: " + actualStatusInCard);
+        Assert.assertEquals(actualStatusInCard, status);
+    }
 }

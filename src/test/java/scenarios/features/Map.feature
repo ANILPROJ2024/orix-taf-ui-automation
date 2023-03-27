@@ -17,6 +17,7 @@ Feature: Map functionality
   Scenario Outline: Verify that the fuel information is correct for the vehicle <vehicle>
     Given Logged into intangles
     When Search and select a vehicle "<vehicle>" from the list
+    Then Verify that the "FUEL" section is displayed
     Then Verify the fuel percentage "<fuel_percentage>" is correct
 
     Examples:
@@ -29,6 +30,7 @@ Feature: Map functionality
   Scenario Outline: Verify that the AdBlue information is correct for the vehicle <vehicle>
     Given Logged into intangles
     When Search and select a vehicle "<vehicle>" from the list
+    Then Verify that the "ADBLUE" section is displayed
     Then Verify the adblue percentage "<adblue_percentage>" is correct
 
     Examples:
@@ -37,14 +39,15 @@ Feature: Map functionality
       | sarang 4           | 6%                |
 
 
-  @map @sanity @regression
+  @map @sanity @regression @test
   Scenario Outline: Verify that the vehicle health status is correct for the vehicle <vehicle>
     Given Logged into intangles
     When Search and select a vehicle "<vehicle>" from the list
-    Then Verify the vehicle health status "<vehicle_status>" is correct
+    Then Verify the vehicle health status "<vehicle_health_status>" in card
+    Then Verify the vehicle health status "<vehicle_health_status>" in vehicle details
 
     Examples:
-      | vehicle      | vehicle_status |
+      | vehicle      | vehicle_health_status |
       | gobinda_jeep | GOOD           |
       | sarang 4     | MAJOR          |
 
@@ -53,7 +56,8 @@ Feature: Map functionality
   Scenario Outline: Verify that the vehicle moving status is visible for the vehicle <vehicle>
     Given Logged into intangles
     When Search and select a vehicle "<vehicle>" from the list
-    Then Verify the vehicle moving status "<vehicle_moving_status>" is correct
+    Then Verify the vehicle moving status "<vehicle_moving_status>" in card
+    Then Verify the vehicle moving status "<vehicle_moving_status>" in vehicle details
 
     Examples:
       | vehicle      | vehicle_moving_status |
@@ -76,4 +80,3 @@ Feature: Map functionality
       | PARKED  |
       | NO GPS  |
       | OFFLINE |
-#      | TOTAL   |

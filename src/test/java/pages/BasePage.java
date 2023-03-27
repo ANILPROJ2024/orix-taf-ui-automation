@@ -45,4 +45,13 @@ public class BasePage {
         return driver.findElement(element).getText();
     }
 
+    public void scrollToElement(WebElement element) {
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        jsExecutor.executeScript("arguments[0].scrollIntoView();", element);
+    }
+
+    public void waitUntilElementIsDisplayed(By element) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(element));
+    }
+
 }

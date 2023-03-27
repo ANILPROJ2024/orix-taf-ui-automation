@@ -7,44 +7,28 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class MapPage extends BasePage {
 
-    private final By vehicleCard = By.xpath("(//b[contains(text(),'gobinda_jeep')])[1]");
-    private final By vehiclePopOver = By.xpath("(//b[contains(text(),'gobinda_jeep')])[3]");
-    private final By vehicleAddress = By
-            .cssSelector("div[title='Current location'] span[class='d-MuiTypography-root d-MuiTypography-body1']");
-    private final By speed = By.cssSelector("span[class='d-MuiTypography-root d-MuiTypography-h6'] strong");
+    private final By vehicleAddress = By.cssSelector("div[title='Current location'] span[class='d-MuiTypography-root d-MuiTypography-body1']");
+    private final By vehicleSpecification = By.cssSelector("div[title='Vehicle specs'] span[class='d-MuiTypography-root d-MuiTypography-body1']");
+    private final By searchVehicleField = By.cssSelector("input[placeholder='Search Vehicle...']");
+    private final By vehicles = By.xpath("//p[@class='d-MuiTypography-root d-MuiTypography-body1'][@caseformat='upper'][contains(@style,'font-size')]");
+    private final By vehicleStatusComponent = By.xpath("//h6[normalize-space()='TOTAL']");
+    private final String vehicleStatusComponentName = "//h6[normalize-space()='statusName']";
+    private final String vehicleStatusComponentCount = "//h6[normalize-space()='statusName']/preceding-sibling::h6/b";
+    private final String section = "//span[normalize-space()='section']";
+    private final String healthStatusInCard = "//p[normalize-space()='status']";
+    private final String movingStatusInCard = "//p[contains(text(), 'status')]";
     private final String odometerReading = "//b[normalize-space()='odometerReading']";
     private final String fuelPercentage = "//span[normalize-space()='percentageFuel']";
-    private final By vehicleSpecification = By
-            .cssSelector("div[title='Vehicle specs'] span[class='d-MuiTypography-root d-MuiTypography-body1']");
-    private final By vehicleState = By
-            .xpath("(//span[@class='d-MuiChip-label d-MuiChip-labelSmall'][normalize-space()='OFFLINE'])[1]");
-    private final By vehicleDrivers = By.xpath("//span[normalize-space()='DRIVERS']");
-    private final By fuelSection = By.xpath("//span[normalize-space()='FUEL']");
-    private final By searchVehicleField = By.cssSelector("input[placeholder='Search Vehicle...']");
-    private final By adBlue = By.xpath("//span[normalize-space()='6%']");
+    private final String vehicleHealth = "//span[normalize-space()='healthStatus']";
+    private final String vehicleMoving = "//span[contains(@class,'d-MuiChip-label d-MuiChip-labelSmall')][normalize-space()='movingStatus']";
     private final String adBluePercentage = "//span[normalize-space()='percentage']";
-    private final By vehicleParkedState = By.xpath("//h6[normalize-space()='PARKED']");
-    private final By vehicles = By.xpath(
-            "//p[@class='d-MuiTypography-root d-MuiTypography-body1'][@caseformat='upper'][contains(@style,'font-size')]");
-    private String vehicleHealth = "//span[normalize-space()='healthStatus']";
-    private String vehicleMoving = "//span[contains(@class,'d-MuiChip-label d-MuiChip-labelSmall')][normalize-space()='movingStatus']";
-    private final By vehicleStatusComponent = By.xpath("//h6[normalize-space()='TOTAL']");
-    private String vehicleStatusComponentName = "//h6[normalize-space()='statusName']";
-    private String vehicleStatusComponentCount = "//h6[normalize-space()='statusName']/preceding-sibling::h6/b";
 
     public MapPage(WebDriver driver) {
         super(driver);
-    }
-
-    public boolean selectAVehicle(String vehicle) {
-        clickOnElement(vehicleCard);
-        return driver.findElement(vehiclePopOver).isDisplayed();
     }
 
     public String getVehicleAddress() {
@@ -59,19 +43,14 @@ public class MapPage extends BasePage {
         return getTextOnElement(vehicleSpecification);
     }
 
-    public String getVehicleState() {
-        return getTextOnElement(vehicleState);
+    public boolean isSectionDisplayed(String detailsSection) {
+        WebElement element = driver.findElement(By.xpath(section.replace("section", detailsSection.toUpperCase())));
+        scrollToElement(element);
+        return element.isDisplayed();
     }
 
-    public void scrollToDrivers() {
-        WebElement scrollToElement = driver.findElement(vehicleDrivers);
-        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-        jsExecutor.executeScript("arguments[0].scrollIntoView();", scrollToElement);
-    }
-
-    public boolean verifyFuelPercentage(String percentage) {
-        driver.findElement(fuelSection).isDisplayed();
-        return driver.findElement(By.xpath(fuelPercentage.replace("percentageFuel", percentage))).isDisplayed();
+    public String getFuelPercentage(String percentage) {
+        return driver.findElement(By.xpath(fuelPercentage.replace("percentageFuel", percentage))).getText();
     }
 
     public void searchAndSelectVehicle(String vehicle) throws InterruptedException {
@@ -101,8 +80,8 @@ public class MapPage extends BasePage {
 
     }
 
-    public boolean verifyHealthStatusIsDisplayed(String healthStatus) {
-        return driver.findElement(By.xpath(vehicleHealth.replace("healthStatus", healthStatus))).isDisplayed();
+    public String getVehicleHealthStatus(String healthStatus) {
+        return driver.findElement(By.xpath(vehicleHealth.replace("healthStatus", healthStatus))).getText();
     }
 
     public boolean isMovingStatusDisplayed(String movingStatus) {
@@ -114,8 +93,7 @@ public class MapPage extends BasePage {
     }
 
     public int getVehicleStatusComponentCount(String status) {
-        String count = driver.findElement(By.xpath(vehicleStatusComponentCount.replace("statusName", status)))
-                .getText();
+        String count = driver.findElement(By.xpath(vehicleStatusComponentCount.replace("statusName", status))).getText();
         return Integer.parseInt(count);
     }
 
@@ -123,4 +101,15 @@ public class MapPage extends BasePage {
         clickOnElement(By.xpath(vehicleStatusComponentName.replace("statusName", status)));
     }
 
+    public String getHealthStatusInCard(String status) {
+        By element = By.xpath(healthStatusInCard.replace("status", status));
+        waitUntilElementIsDisplayed(element);
+        return driver.findElement(element).getText();
+    }
+
+    public String getMovingStatusInCard(String status) {
+        By element = By.xpath(movingStatusInCard.replace("status", status));
+        waitUntilElementIsDisplayed(element);
+        return driver.findElement(element).getText();
+    }
 }
