@@ -18,7 +18,7 @@ Feature: Map functionality
     Given Logged into intangles
     When Search and select a vehicle "<vehicle>" from the list
     Then Verify that the "FUEL" section is displayed
-    Then Verify the fuel percentage "<fuel_percentage>" is correct
+    And Verify the fuel percentage "<fuel_percentage>" is correct
 
     Examples:
       | vehicle         | fuel_percentage |
@@ -31,7 +31,7 @@ Feature: Map functionality
     Given Logged into intangles
     When Search and select a vehicle "<vehicle>" from the list
     Then Verify that the "ADBLUE" section is displayed
-    Then Verify the adblue percentage "<adblue_percentage>" is correct
+    And Verify the adblue percentage "<adblue_percentage>" is correct
 
     Examples:
       | vehicle            | adblue_percentage |
@@ -44,7 +44,7 @@ Feature: Map functionality
     Given Logged into intangles
     When Search and select a vehicle "<vehicle>" from the list
     Then Verify the vehicle health status "<vehicle_health_status>" in card
-    Then Verify the vehicle health status "<vehicle_health_status>" in vehicle details
+    And Verify the vehicle health status "<vehicle_health_status>" in vehicle details
 
     Examples:
       | vehicle      | vehicle_health_status |
@@ -57,7 +57,7 @@ Feature: Map functionality
     Given Logged into intangles
     When Search and select a vehicle "<vehicle>" from the list
     Then Verify the vehicle moving status "<vehicle_moving_status>" in card
-    Then Verify the vehicle moving status "<vehicle_moving_status>" in vehicle details
+    And Verify the vehicle moving status "<vehicle_moving_status>" in vehicle details
 
     Examples:
       | vehicle      | vehicle_moving_status |
@@ -68,9 +68,9 @@ Feature: Map functionality
   Scenario Outline: Verify that the vehicle status count component is visible and correct for the status <status>
     Given Logged into intangles
     Then Verify the vehicle status count component is displayed on the map
-    Then Verify the vehicle status component "<status>" data is correct
-    Then Click on the status "<status>"
-    Then Verify that the vehicles are listed as per the status "<status>" clicked
+    And Verify the vehicle status component "<status>" data is correct
+    When Click on the status "<status>"
+    And Verify that the vehicles are listed as per the status "<status>" clicked
 
     Examples:
       | status  |

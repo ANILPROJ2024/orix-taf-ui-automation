@@ -70,7 +70,7 @@ public class MapPageSteps {
         Assert.assertTrue(mapPage.isMovingStatusDisplayed(movingStatus), "Expected moving status is not displayed");
     }
 
-    @When("Verify the vehicle status count component is displayed on the map")
+    @Then("Verify the vehicle status count component is displayed on the map")
     public void verifyTheVehicleStatusCountComponentIsDisplayedOnTheMap() {
         Assert.assertTrue(mapPage.isVehicleStatusComponentDisplayed());
     }
@@ -86,7 +86,7 @@ public class MapPageSteps {
         Assert.assertTrue(flag);
     }
 
-    @Then("Click on the status {string}")
+    @When("Click on the status {string}")
     public void clickOnTheStatus(String status) {
         mapPage.clickOnStatus(status);
     }

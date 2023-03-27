@@ -11,10 +11,13 @@ import java.util.List;
 
 public class MapPage extends BasePage {
 
-    private final By vehicleAddress = By.cssSelector("div[title='Current location'] span[class='d-MuiTypography-root d-MuiTypography-body1']");
-    private final By vehicleSpecification = By.cssSelector("div[title='Vehicle specs'] span[class='d-MuiTypography-root d-MuiTypography-body1']");
+    private final By vehicleAddress = By
+            .cssSelector("div[title='Current location'] span[class='d-MuiTypography-root d-MuiTypography-body1']");
+    private final By vehicleSpecification = By
+            .cssSelector("div[title='Vehicle specs'] span[class='d-MuiTypography-root d-MuiTypography-body1']");
     private final By searchVehicleField = By.cssSelector("input[placeholder='Search Vehicle...']");
-    private final By vehicles = By.xpath("//p[@class='d-MuiTypography-root d-MuiTypography-body1'][@caseformat='upper'][contains(@style,'font-size')]");
+    private final By vehicles = By.xpath(
+            "//p[@class='d-MuiTypography-root d-MuiTypography-body1'][@caseformat='upper'][contains(@style,'font-size')]");
     private final By vehicleStatusComponent = By.xpath("//h6[normalize-space()='TOTAL']");
     private final String vehicleStatusComponentName = "//h6[normalize-space()='statusName']";
     private final String vehicleStatusComponentCount = "//h6[normalize-space()='statusName']/preceding-sibling::h6/b";
@@ -93,7 +96,8 @@ public class MapPage extends BasePage {
     }
 
     public int getVehicleStatusComponentCount(String status) {
-        String count = driver.findElement(By.xpath(vehicleStatusComponentCount.replace("statusName", status))).getText();
+        String count = driver.findElement(By.xpath(vehicleStatusComponentCount.replace("statusName", status)))
+                .getText();
         return Integer.parseInt(count);
     }
 
