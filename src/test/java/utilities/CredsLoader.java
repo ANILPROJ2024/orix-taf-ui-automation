@@ -6,7 +6,8 @@ public class CredsLoader {
     private final Properties properties;
 
     public CredsLoader() {
-        properties = PropertyUtils.propertyLoader(System.getProperty("credsFilePath"));
+        properties = PropertyUtils.propertyLoader(System.getProperty("credsFilePath",
+                "E:\\OrixIndia-ui-tests-automation4\\src\\test\\resources\\devconfig.properties"));
     }
 
     public String getProperty(String property) {
