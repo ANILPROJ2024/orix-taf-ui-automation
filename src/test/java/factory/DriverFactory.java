@@ -32,6 +32,12 @@ public class DriverFactory {
                 chromeOptions.setExperimentalOption("prefs",
                         Collections.singletonMap("autofill.credit_card_enabled", false));
                 chromeOptions.addArguments("--incognito");
+                chromeOptions.addArguments("--disable-blink-features=AutomationControlled");
+                // chromeOptions.setExperimentalOption("prefs", Map.of(
+                // "profile.default_content_setting_values.geolocation", 2 ));
+                chromeOptions.addArguments("--disable-geolocation");
+                chromeOptions.addArguments("--enable-strict-powerful-feature-restrictions");
+
 //                chromeOptions.addArguments("--headless");
 //                if (System.getProperty("browserMode", "normal").equalsIgnoreCase("headless")) {
 //                    chromeOptions.addArguments("--headless");

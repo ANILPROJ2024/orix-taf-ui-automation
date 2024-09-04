@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import utilities.CredsLoader;
+import java.util.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -75,10 +76,20 @@ public class UserHomePage extends BasePage {
     public boolean verifyPickDateValue(String time) {
         waitUntilElementIsDisplayed(pickUpDateText);
         String date = driver.findElement(pickUpDateText).getText();
+        String dateText = date;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
         LocalDate givenDate = UserHomePage.fromGivenDate;
-        if (givenDate.format(formatter).equals(date.split(" ")[0])
-                && date.split(" ")[1].concat(":" + date.split(" ")[2]).contains(time)) {
+
+        String data = givenDate.format(formatter).split(" ")[0];
+        data = data.split(" ")[0];
+        date = date.split(" ")[0];
+        if (data.split("-")[1].length() > 3) {
+            int i = data.split("-")[1].length();
+            data = data.split("-")[0] + "-" + date.split("-")[1].substring(0, (i - 1)) + "-" + date.split("-")[2];
+        }
+        String date1 = String.join(",", Arrays.asList(data.split("-")));
+        String date2 = String.join(",", Arrays.asList(date.split("-")));
+        if (date1.contains(date2) && dateText.split(" ")[1].concat(":" + dateText.split(" ")[2]).contains(time)) {
             return true;
         }
         return false;
@@ -87,10 +98,19 @@ public class UserHomePage extends BasePage {
     public boolean verifyDropDateValue(String time) {
         waitUntilElementIsDisplayed(dropDateText);
         String date = driver.findElement(dropDateText).getText();
+        String dateText = date;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
         LocalDate toDate = UserHomePage.toGivenDate;
-        if (toDate.format(formatter).equals(date.split(" ")[0])
-                && date.split(" ")[1].concat(":" + date.split(" ")[2]).contains(time)) {
+        String data = toDate.format(formatter).split(" ")[0];
+        data = data.split(" ")[0];
+        date = date.split(" ")[0];
+        if (data.split("-")[1].length() > 3) {
+            int i = data.split("-")[1].length();
+            data = data.split("-")[0] + "-" + date.split("-")[1].substring(0, (i - 1)) + "-" + date.split("-")[2];
+        }
+        String date1 = String.join(",", Arrays.asList(data.split("-")));
+        String date2 = String.join(",", Arrays.asList(date.split("-")));
+        if (date1.contains(date2) && dateText.split(" ")[1].concat(":" + dateText.split(" ")[2]).contains(time)) {
             return true;
         }
         return false;

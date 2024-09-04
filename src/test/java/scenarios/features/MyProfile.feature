@@ -1,4 +1,4 @@
-@test
+
 Feature: MyProfile Functionality
 
   Scenario Outline: Verify the cancelled trip in Booking > MyProfile

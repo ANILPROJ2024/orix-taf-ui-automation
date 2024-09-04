@@ -35,7 +35,7 @@ public class CheckoutPageSteps {
     @And("^User Verifies the \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" and car name in Daily Rentals$")
     public void userVerifiesTheAndCarNameinDailyRentals(String pickuptime, String returntime, String state) {
         Assert.assertTrue(checkoutPage.verifiDetails(pickuptime, returntime, state, false));
-        scenario.log("user successfully verifies pickupTime returnTime " + pickuptime + returntime);
+        scenario.log("user successfully verifies pickupTime returnTime " + pickuptime +" "+ returntime);
     }
 
     @And("User Verifies the {string} {string} {string} and car name")
@@ -47,7 +47,7 @@ public class CheckoutPageSteps {
     @And("User enter {string} {string} {string} {string}")
     public void userEnter(String name, String number, String month, String year) {
         Assert.assertTrue(checkoutPage.completePayment(name, number, month, year));
-        scenario.log("user successfully enter the Debit card details " + name + number + month + year);
+        scenario.log("user successfully enter the Debit card details " + name+" "+" "+ number+" "+" " +month +" "+ year);
     }
 
     @Then("User click on success button")

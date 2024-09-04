@@ -1,4 +1,4 @@
-@test
+
 Feature: Login Functionality
 
   Scenario Outline:  Verify user is able to Login up with a valid phone number

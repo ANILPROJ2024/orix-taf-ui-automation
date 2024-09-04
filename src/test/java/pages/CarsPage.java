@@ -42,7 +42,7 @@ public class CarsPage extends BasePage {
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(allCars));
         List<WebElement> cars = driver.findElements(allCars);
         // int value = getRandomNumberInRange(1,cars.size());
-        int value = 6;
+        int value = 5;
         waitUntilElementIsDisplayed(
                 By.xpath(getDynamicPath("(//div[@class='list_sec desktop_sc']//div//h1)[%s]", String.valueOf(value))));
         carNameValue = driver
@@ -83,7 +83,6 @@ public class CarsPage extends BasePage {
 
     public void clickOnChooseFilterOption(String value) {
         try {
-
             String path = getDynamicPath(filterOption, value);
             Thread.sleep(3000);
             waitUntilElementIsDisplayed(By.xpath(path));

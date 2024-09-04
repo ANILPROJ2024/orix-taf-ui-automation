@@ -1,4 +1,4 @@
-@test
+
 Feature: MonthlyRental Functionality
 
   Scenario Outline:  Verify Monthly Subscription bookings
@@ -74,8 +74,8 @@ Feature: MonthlyRental Functionality
     Then User click on cancels the booking by click on cancel button
 
     Examples:
-      | mobileNumber | otp    | userName | city  | pickupLocation | pickupAddress                                       | dropLocation | dropAddress                                         | pickupTime | returntime | firstname | lastname | gender | DOB          | panNumber  | addressType | state     | pinCode | address  | title              |bankName|
-      | 9999999999    | 123123 | Anil      | Bengaluru | At my Address(Outside city Limiits)_monthly    | Demo pickup Loc | At my Address(Outside city Limiits)_monthly  | Demo pickup Loc | 11:00:AM    | 7:00:PM    | anil      | nagaraja | Male   | 08/03/1994 | BYHPA5614C | Permanent   | Karnataka | 560100  | Banglore | Choose payment method | HDFC   |
+      | mobileNumber | otp    | userName | city        | pickupLocation                                 | pickupAddress                                               | dropLocation                                 | dropAddress                                                 | pickupTime | returntime | firstname | lastname | gender | DOB          | panNumber  | addressType | state     | pinCode | address  | title              |bankName|
+      | 9999999999    | 123123 | Anil      | Bengaluru | At my Address(Outside city Limiits)_monthly    | XHCV+JR Bengaluru, Karnataka, India | At my Address(Outside city Limiits)_monthly  | XHCV+JR Bengaluru, Karnataka, India | 11:00:AM    | 7:00:PM    | anil      | nagaraja | Male   | 08/03/1994 | BYHPA5614C | Permanent   | Karnataka | 560100  | Banglore | Choose payment method | HDFC   |
 
   Scenario Outline: Verify booking through Monthly Rental  by selecting "Nearby Location" and verifying the "Total Amount" accordingly.
     Given User enters the url and lands in the Home page

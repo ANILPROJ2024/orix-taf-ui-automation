@@ -19,8 +19,6 @@ public class BookingDetailsPage extends BasePage {
 
     private final By dropLocation = By.xpath("//p[contains(text(),'Drop Location')]/following-sibling::h5");
     private final By mobileNumber = By.xpath("//p[contains(text(),'Phone Number')]/following-sibling::h5");
-
-    private final By paymentSuccessful = By.xpath("//h2[text()='Payment Successful']");
     private final By amount = By.xpath("//h1[text()='Total Amount']/following-sibling::h1");
     private final By closePopupButton = By.xpath("//button[@aria-label=\"Close\"]");
 

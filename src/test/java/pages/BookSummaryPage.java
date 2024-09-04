@@ -42,7 +42,7 @@ public class BookSummaryPage extends BasePage {
 
     private final By dropTextBox = By
             .xpath("//p[text()=\"Drop Location | Time | Charges\"]/following-sibling::div/textarea");
-
+    private final By confirmAddress = By.xpath("//*[text()='Confirm Address']");
     public static double pickupAndDropCharges = 0;
     public static double pickUpCharges = 0;
     public static double dropCharges = 0;
@@ -237,15 +237,7 @@ public class BookSummaryPage extends BasePage {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        waitUntilElementIsDisplayed(addressTextBox);
-        clickOnElement(addressTextBox);
-        enterTextUsingJS(driver, driver.findElement(addressTextBox), address);
-        driver.findElement(addressTextBox).sendKeys(Keys.ENTER);
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        clickOnElement(confirmAddress);
     }
 
     public void selectDropDoorStepDeliveryLocation(String choosenLocation, String address) {
@@ -260,16 +252,7 @@ public class BookSummaryPage extends BasePage {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        waitUntilElementIsDisplayed(dropTextBox);
-        clickOnElement(dropTextBox);
-        enterTextUsingJS(driver, driver.findElement(dropTextBox), address);
-        driver.findElement(dropTextBox).sendKeys(Keys.ENTER);
-        driver.findElement(dropTextBox).sendKeys(Keys.ENTER);
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        clickOnElement(confirmAddress);
     }
 
 }

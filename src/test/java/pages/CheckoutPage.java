@@ -28,12 +28,6 @@ public class CheckoutPage extends BasePage {
     private final By makePayment = By.xpath("//button[contains(text(),'Make Payment')]");
     private final By successButton = By.xpath("//button[contains(text(),'Success')]");
     private final By cvvCode = By.xpath("//*[@id='security_code']");
-
-    private final By mobileNumber = By.xpath("(//p//span)[2]");
-    private final By emailId = By.xpath("(//p//span)[3]");
-    private final By amount = By.xpath("(//p//span)[4]");
-    private final By bookingId = By.xpath("(//p//span)[5]");
-    private final By closePopupButton = By.xpath("//button[@aria-label=\"Close\"]");
     private final By netBanking = By.xpath("//a[contains(text(),'Netbanking')]");
     private final By bankName = By.xpath("(//h5)[2]");
     public static String bookingIdValue;
@@ -88,13 +82,13 @@ public class CheckoutPage extends BasePage {
         List<String> list1 = new ArrayList<>();
         list1.add(driver.findElement(state).getText());
         list1.add(dayFormatter(pickup.split(" ")[1]));
-        list1.add(monthFormatter(pickup.split(" ")[2]));
+        list1.add(getMonth(pickup.split(" ")[2]));
         list1.add(pickup.split(" ")[3]);
         list1.add(timeFormatter(pickuptime).toUpperCase());
         list1.add(dayFormatter(returndate1.split(" ")[1]));
         list1.add(getMonth(returndate1.split(" ")[2]));
         list1.add(returndate1.split(" ")[3]);
-        list1.add(timeFormatter(returntime1).toUpperCase());
+        list1.add((returntime1).toUpperCase());
 
         List<String> list2 = new ArrayList<>();
         list2.add(state1);
@@ -131,7 +125,7 @@ public class CheckoutPage extends BasePage {
         List<String> list1 = new ArrayList<>();
         list1.add(driver.findElement(state).getText());
         list1.add(dayFormatter(pickup.split(" ")[1]));
-        list1.add(monthFormatter(pickup.split(" ")[2]));
+        list1.add(getMonth(pickup.split(" ")[2]));
         list1.add(pickup.split(" ")[3]);
         list1.add(timeFormatter(pickuptime).toUpperCase());
         list1.add(dayFormatter(returndate1.split(" ")[1]));

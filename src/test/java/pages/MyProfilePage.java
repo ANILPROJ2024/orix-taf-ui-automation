@@ -86,7 +86,6 @@ public class MyProfilePage extends BasePage {
     public boolean verifyBookingId() {
         boolean result = false;
         waitUntilElementIsDisplayed(bookingId);
-//CheckoutPage.bookingIdValue
         if (driver.findElement(bookingId).getText().trim().equals(CheckoutPage.bookingIdValue)) {
             result = true;
         }

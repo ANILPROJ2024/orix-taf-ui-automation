@@ -1,4 +1,4 @@
-@test
+
 Feature: DailyRental Functionality
 
   Scenario Outline: Verify booking through Daily Rental for 300 Kms/Day by selecting "Doorstep" delivery and verifying the "Total Amount"
@@ -34,9 +34,9 @@ Feature: DailyRental Functionality
     And User click on logout and verifies navigate to Login page
 
     Examples:
-      | mobileNumber | otp    | userName | city   | pickupLocation                      | pickupAddress   | dropLocation                        | dropAddress          | pickupTime | returnTime | firstname | lastname | gender | DOB        | panNumber | addressType | state     | pinCode | address  | title                 | Card_name | Card_number     | Exp_number | Exp_year |
-      | 9999999999   | 123123 | Anil     | Delhi  | At my Address(Outside city Limiits) | Demo pickup Loc | At my Address(Outside city Limiits) | Demo test DropOf Loc | 10:00:AM    | 6:00:PM    | anil      | nagaraja | Male   | 08/03/1994 | BYHPA5614C | Permanent   | Karnataka | 560100  | Banglore | Choose payment method | Anil      | 371449635398431 | 12         | 26       |
-
+      | mobileNumber | otp    | userName | city   | pickupLocation                      | pickupAddress                                                      | dropLocation                        | dropAddress                                                  | pickupTime | returnTime | firstname | lastname | gender | DOB        | panNumber | addressType | state     | pinCode | address  | title                 | Card_name | Card_number     | Exp_number | Exp_year |
+      | 9999999999   | 123123 | Anil     | Delhi  | At my Address(Outside city Limiits) | 987, Pocket 25, Subhash Place, Rohini, Delhi, 110034, India        | At my Address(Outside city Limiits) | 987, Pocket 25, Subhash Place, Rohini, Delhi, 110034, India  | 10:00:AM    | 06:00:PM    | anil      | nagaraja | Male   | 08/03/1994 | BYHPA5614C | Permanent   | Karnataka | 560100  | Banglore | Choose payment method | Anil      | 371449635398431 | 12         | 26       |
+@test
   Scenario Outline: Verify booking through Daily Rental for "Unlimited" by selecting "Nearby Location" and verifying the "Total Amount" accordingly.
     Given User enters the url and lands in the Home page
     When User click on Login or Signup button
@@ -72,7 +72,7 @@ Feature: DailyRental Functionality
 
     Examples:
       | mobileNumber | otp    | userName  | city   | pickupLocation | pickupAddress                      | dropLocation | dropAddress                        | pickupTime | returnTime | firstname | lastname | gender | DOB        | panNumber  | addressType | state     | pinCode | address  | title                 | Card_name | Card_number     | Exp_number | Exp_year |
-      | 9999999999   | 123123 | Anil      | Delhi  | ICL           | AT MY ADDRESS (INSIDE CITY LIMITS)  | ICL          | AT MY ADDRESS (INSIDE CITY LIMITS)  | 10:00:AM   | 6:00:PM    | anil      | nagaraja | Male   | 08/03/1994 | BYHPA5614C | Permanent   | Karnataka | 560100  | Banglore | Choose payment method | Anil      | 371449635398431 | 12         | 26       |
+      | 9999999999   | 123123 | Anil      | Delhi  | ICL           | AT MY ADDRESS (INSIDE CITY LIMITS)  | ICL          | AT MY ADDRESS (INSIDE CITY LIMITS)  | 10:00:AM   | 06:00:PM    | anil      | nagaraja | Male   | 08/03/1994 | BYHPA5614C | Permanent   | Karnataka | 560100  | Banglore | Choose payment method | Anil      | 371449635398431 | 12         | 26       |
 
   Scenario Outline: Verify booking through Daily Rental for "120Kms/PerDay" by selecting "Nearby Location" and verifying the "Total Amount" accordingly.
     Given User enters the url and lands in the Home page
@@ -109,7 +109,7 @@ Feature: DailyRental Functionality
 
     Examples:
       | mobileNumber | otp    | userName | city   | pickupLocation | pickupAddress                      | dropLocation | dropAddress                        | pickupTime | returnTime | firstname | lastname | gender | DOB        | panNumber  | addressType | state     | pinCode | address  | title                 | Card_name | Card_number     | Exp_number | Exp_year |
-      | 9999999999   | 123123 | Anil     | Delhi  | ICL            | AT MY ADDRESS (INSIDE CITY LIMITS) | ICL          | AT MY ADDRESS (INSIDE CITY LIMITS) | 10:00:AM    | 6:00:PM    | anil     | nagaraja | Male   | 08/03/1994 | BYHPA5614C | Permanent   | Karnataka | 560100  | Banglore | Choose payment method | Anil      | 371449635398431 | 12         | 26       |
+      | 9999999999   | 123123 | Anil     | Delhi  | ICL            | AT MY ADDRESS (INSIDE CITY LIMITS) | ICL          | AT MY ADDRESS (INSIDE CITY LIMITS) | 10:00:AM    | 06:00:PM    | anil     | nagaraja | Male   | 08/03/1994 | BYHPA5614C | Permanent   | Karnataka | 560100  | Banglore | Choose payment method | Anil      | 371449635398431 | 12         | 26       |
 
   Scenario Outline: Verify booking through Daily rental bookings by applying luggage carrier and promo code,
   and verify the discount in total amount.
@@ -149,7 +149,7 @@ Feature: DailyRental Functionality
 
     Examples:
       | mobileNumber | otp    | userName | city   | promoCode | pickupLocation | pickupAddress                                       | dropLocation | dropAddress                                         | pickupTime | returnTime | firstname | lastname | gender | DOB        | panNumber  | addressType | state     | pinCode | address  | title                 | Card_name | Card_number     | Exp_number | Exp_year |
-      | 9999999999   | 123123 | Anil      | Delhi | DRIVE4000 | MOTI NAGAR    | Plot no. 11 A Shivaji Marg, Moti Nagar, New  Delhi. | MOTI NAGAR   | Plot no. 11 A Shivaji Marg, Moti Nagar, New  Delhi. | 10:00:AM   | 6:00:PM    | anil      | nagaraja | Male   | 08/03/1994 | BYHPA5614C | Permanent   | Karnataka | 560100  | Banglore | Choose payment method | Anil      | 371449635398431 | 12         | 26       |
+      | 9999999999   | 123123 | Anil      | Delhi | DRIVE4000 | MOTI NAGAR    | Plot no. 11 A Shivaji Marg, Moti Nagar, New  Delhi. | MOTI NAGAR   | Plot no. 11 A Shivaji Marg, Moti Nagar, New  Delhi. | 10:00:AM   | 06:00:PM    | anil      | nagaraja | Male   | 08/03/1994 | BYHPA5614C | Permanent   | Karnataka | 560100  | Banglore | Choose payment method | Anil      | 371449635398431 | 12         | 26       |
 
   Scenario Outline: Verify booking through Daily rental bookings by using modify search
     Given User enters the url and lands in the Home page
@@ -189,7 +189,7 @@ Feature: DailyRental Functionality
 
     Examples:
       | mobileNumber | otp    | userName | city    | From_Date  | To_Date    | ModifiedPickUpDate | ModifiedDropOfDate | ModifiedCity | ModifiedPickUpTime | ModifiedDropOdTime | pickupLocation     | pickupAddress | dropLocation      | dropAddress | pickupTime | returnTime | firstname | lastname | gender | DOB        | panNumber  | addressType | state     | pinCode | address  | title                 | Card_name | Card_number     | Exp_number | Exp_year |
-      | 9999999999    | 123123 | Anil      | Delhi | 23-08-2024 | 26-08-2024 | 26-11-2024         | 28-11-2024         | Bengaluru    | 10:30:AM           | 6:30:PM            | BENGALURU AIRPORT | AIRPORT       | BENGALURU AIRPORT | AIRPORT     | 5:00:AM    | 6:00:PM    | anil      | nagaraja | Male   | 08/03/1994 | BYHPA5614C | Permanent   | Karnataka | 560100  | Banglore | Choose payment method | Anil      | 371449635398431 | 12         | 26       |
+      | 9999999999    | 123123 | Anil      | Delhi | 23-08-2024 | 26-08-2024 | 26-11-2024         | 28-11-2024         | Bengaluru    | 10:30:AM           | 06:30:PM            | BENGALURU AIRPORT | AIRPORT       | BENGALURU AIRPORT | AIRPORT     | 05:00:AM    | 06:00:PM    | anil      | nagaraja | Male   | 08/03/1994 | BYHPA5614C | Permanent   | Karnataka | 560100  | Banglore | Choose payment method | Anil      | 371449635398431 | 12         | 26       |
 
   Scenario Outline:  Verify by Booking through the fleet section for Daily rentals.
     Given User enters the url and lands in the Home page
@@ -227,7 +227,7 @@ Feature: DailyRental Functionality
 
     Examples:
       | mobileNumber | otp    | userName | city    | pickupLocation | pickupAddress                                       | dropLocation | dropAddress                                         | pickupTime | returnTime | firstname | lastname | gender | DOB        | panNumber  | addressType | state     | pinCode | address  | title                 | Card_name | Card_number     | Exp_number | Exp_year |
-      | 9999999999   | 123123 | Anil     | Delhi   | MOTI NAGAR    | Plot no. 11 A Shivaji Marg, Moti Nagar, New  Delhi. | MOTI NAGAR   | Plot no. 11 A Shivaji Marg, Moti Nagar, New  Delhi. | 10:00:AM    | 6:00:PM    | anil      | nagaraja | Male   | 08/03/1994 | BYHPA5614C | Permanent   | Karnataka | 560100  | Banglore | Choose payment method | Anil      | 371449635398431 | 12         | 26       |
+      | 9999999999   | 123123 | Anil     | Delhi   | MOTI NAGAR    | Plot no. 11 A Shivaji Marg, Moti Nagar, New  Delhi. | MOTI NAGAR   | Plot no. 11 A Shivaji Marg, Moti Nagar, New  Delhi. | 10:00:AM    | 06:00:PM    | anil      | nagaraja | Male   | 08/03/1994 | BYHPA5614C | Permanent   | Karnataka | 560100  | Banglore | Choose payment method | Anil      | 371449635398431 | 12         | 26       |
 
   Scenario Outline:  Verify filter features in car list page through Daily Rental
     Given User enters the url and lands in the Home page

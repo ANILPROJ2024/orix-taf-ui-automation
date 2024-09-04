@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 
@@ -266,14 +267,6 @@ public class BasePage {
             return true;
         }
         return false;
-    }
-
-    public int getRandomNumberInRange(int min, int max) {
-        Random random = new Random();
-        if (min > max) {
-            throw new IllegalArgumentException("min must be less than or equal to max");
-        }
-        return random.nextInt((max - min) + 1) + min;
     }
 
 }
